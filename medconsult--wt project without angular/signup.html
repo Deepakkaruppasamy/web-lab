@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Med Consult</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url(sign.jpg) no-repeat center center fixed;
+            background-size: cover;
+            font-family: sans-serif;
+        }
+
+        .box {
+            background: #f5f5f5;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        .user {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: -50px;
+            left: calc(50% - 50px);
+        }
+
+        h1 {
+            margin: 0;
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 22px;
+            color: black;
+        }
+
+        p {
+            color: #f49126;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            width: 100%;
+            color: #673ab7;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: #2196f3;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background: #0097a7;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 20px;
+            color: #069818;
+        }
+
+        a:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+        </ul>
+    </nav>
+    <div class="box">
+        <img src="deepak23.jpg" class="user">
+        <h1>Sign up</h1>
+        <form id="signup-form" action="http://localhost:2006/signup" method="post">
+            <p>Username <input type="text" name="Username" placeholder="Enter Username" required></p>
+            <p>Email <input type="email" name="email" placeholder="Enter email id" required></p>
+            <p>Password <input type="password" name="password" placeholder="Enter Password" required></p>
+            <p>Retype Password <input type="password" name="repassword" placeholder="Re-Enter Password" required></p>
+            <p>Phone Number <input type="tel" name="phone_number" placeholder="Enter Phone Number" required></p>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    <script>
+        
+        var loc = window.location;
+        document.getElementById('signup-form').action = loc.protocol + '//' + loc.hostname +
+            (loc.port ? ':' + loc.port : '') + '/signup';
+    </script>
+</body>
+</html>

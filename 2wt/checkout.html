@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background: url('clock2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            color: #f5f5f5;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .content {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #ffcc00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 2rem;
+            color: #ffcc00 !important;
+            letter-spacing: 2px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f5f5f5 !important;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcc00 !important;
+            transform: scale(1.1);
+        }
+
+        .checkout-container {
+            margin: 50px auto;
+            background-color: #202020;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+        }
+
+        .checkout-container h2, .checkout-container h4 {
+            color: #ffcc00;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #ffcc00, #ff9900);
+            color: #121212;
+            border: none;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #ffc107, #ff8800);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.7);
+        }
+
+        .btn-secondary {
+            background: #343a40;
+            color: #f5f5f5;
+            border: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #ffcc00;
+            color: #121212;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.7);
+        }
+
+        .card-details-form input, .shipping-address-form input {
+            background-color: #121212;
+            color: #f5f5f5;
+            border: 1px solid #ffcc00;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card-details-form input:focus, .shipping-address-form input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+            border-color: #ffcc00;
+        }
+
+        .card-details-form label, .shipping-address-form label {
+            font-size: 1rem;
+            color: #f5f5f5;
+            font-weight: 500;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-icon {
+            font-size: 1.5rem; 
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .footer-bottom {
+            background-color: #121212;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #ffcc00 !important;
+            font-weight: bold;
+            border-bottom: 2px solid #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo.png" alt="D-Wear Logo" height="30" class="d-inline-block align-top">
+                    D-Wear
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container checkout-container main-content">
+            <h2 class="text-center mb-4">Checkout</h2>
+            <h4 class="mb-3">Order Summary</h4>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="checkout-cart-items">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Grand Total</th>
+                        <th id="checkout-total">₹0.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="mt-4">
+                <h4 class="mb-3">Shipping Address</h4>
+                <div class="shipping-address-form">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addressLine1" class="form-label">Address Line 1</label>
+                        <input type="text" class="form-control" id="addressLine1" placeholder="Street address, P.O. Box">
+                    </div>
+                    <div class="mb-3">
+                        <label for="addressLine2" class="form-label">Address Line 2</label>
+                        <input type="text" class="form-control" id="addressLine2" placeholder="Apartment, suite, unit, etc. (optional)">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" placeholder="Enter city">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" placeholder="Enter state">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="zipCode" class="form-label">Zip Code</label>
+                            <input type="text" class="form-control" id="zipCode" placeholder="Enter zip code">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" placeholder="Enter country">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <h4 class="mb-3">Card Details</h4>
+                <div class="card-details-form">
+                    <div class="mb-3">
+                        <label for="cardholderName" class="form-label">Cardholder Name</label>
+                        <input type="text" class="form-control" id="cardholderName" placeholder="Enter cardholder name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiryDate" class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary mt-3" id="submitPayment">Submit Payment</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const checkoutItems = JSON.parse(localStorage.getItem("checkoutItems")) || [];
+                const checkoutTableBody = document.getElementById("checkout-cart-items");
+                const checkoutTotalPrice = document.getElementById("checkout-total");
+
+                checkoutTableBody.innerHTML = ""; 
+
+                if (checkoutItems.length === 0) {
+                    checkoutTableBody.innerHTML = '<tr><td colspan="4" class="text-center">Your cart is empty.</td></tr>';
+                    checkoutTotalPrice.textContent = "₹0.00";
+                    return;
+                }
+
+                let totalPrice = 0;
+
+                checkoutItems.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${item.name}</td>
+                        <td>₹${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>₹${itemTotal.toFixed(2)}</td>
+                    `;
+                    checkoutTableBody.appendChild(row);
+                });
+
+                checkoutTotalPrice.textContent = `₹${totalPrice.toFixed(2)}`;
+
+                document.getElementById("submitPayment").addEventListener("click", function () {
+                    const fullName = document.getElementById("fullName").value.trim();
+                    const addressLine1 = document.getElementById("addressLine1").value.trim();
+                    const city = document.getElementById("city").value.trim();
+                    const state = document.getElementById("state").value.trim();
+                    const zipCode = document.getElementById("zipCode").value.trim();
+                    const country = document.getElementById("country").value.trim();
+                    const cardholderName = document.getElementById("cardholderName").value.trim();
+                    const cardNumber = document.getElementById("cardNumber").value.trim();
+                    const expiryDate = document.getElementById("expiryDate").value.trim();
+                    const cvv = document.getElementById("cvv").value.trim();
+
+                    if (!fullName || !addressLine1 || !city || !state || !zipCode || !country || !cardholderName || !cardNumber || !expiryDate || !cvv) {
+                        alert("Please fill in all fields.");
+                        return;
+                    }
+
+                    localStorage.removeItem("checkoutItems");
+                    alert("Payment successful! Thank you for your purchase.");
+                    window.location.href = "index.html";
+                });
+            });
+        </script>
+
+        <footer>
+            <div class="container">
+                <div class="footer-logo">D-Wear</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p>Email: deepak@gmail.com</p>
+                        <p>Phone: +91 8754764540</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Follow Us</h5>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-md-4 footer-links">
+                        <h5>Additional Information</h5>
+                        <a href="privacy.html" class="text-light">Privacy Policy</a>
+                        <a href="terms.html" class="text-light">Terms of Service</a>
+                    </div>
+                </div>
+                <p class="mt-4">&copy; 2025 D-Wear. All Rights Reserved.</p>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2025 D-Wear. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Details | D-Wear</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+       /* General Styles */
+       body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .content {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        body {
+            background: url('shoes-background.jpg') no-repeat center center fixed; /* Updated image */
+            background-size: cover;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            color: #f5f5f5;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #121212;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 2px solid #ffcc00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 2rem;
+            color: #ffcc00 !important;
+            letter-spacing: 2px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #f5f5f5 !important;
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffcc00 !important;
+            transform: scale(1.1);
+        }
+
+        .product-container {
+            margin-top: 50px;
+            background-color: #202020;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-container h2, .product-container h4 {
+            color: #ffcc00;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #ffcc00, #ff9900);
+            color: #121212;
+            border: none;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #ffc107, #ff8800);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.7);
+        }
+
+        .btn-secondary {
+            background: #343a40;
+            color: #f5f5f5;
+            border: none;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #ffcc00;
+            color: #121212;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.7);
+        }
+
+        .review-section {
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: #2b2b2b;
+            color: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(255, 204, 0, 0.3);
+        }
+
+        .review-form input,
+        .review-form textarea {
+            background-color: #121212;
+            color: #f5f5f5;
+            border: 1px solid #ffcc00;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .review-form input:focus,
+        .review-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                padding: 20px;
+            }
+
+            .btn-primary {
+                font-size: 1rem;
+                padding: 10px 30px;
+            }
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #f5f5f5;
+            text-align: center;
+            padding: 40px 0;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-icon {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="logo.png" alt="D-Wear Logo" height="30" class="d-inline-block align-top">
+                    D-Wear
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container product-container main-content">
+            <a href="shop.html" class="btn btn-secondary mb-4">Back to Shop</a>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <img id="productImage" class="img-fluid" alt="Product Image">
+                </div>
+                <div class="col-md-6">
+                    <h2 id="productName"></h2>
+                    <h4 id="productPrice" class="text-primary"></h4>
+                    <p id="productDescription"></p>
+                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="review-section">
+                <h3>Reviews</h3>
+                <div id="reviews-list" class="mt-3"></div>
+
+                <div class="review-form mt-4">
+                    <h5>Write a Review</h5>
+                    <input type="text" id="review-name" class="form-control mb-2" placeholder="Your Name">
+                    <textarea id="review-text" class="form-control mb-2" rows="3" placeholder="Your Review"></textarea>
+                    <button id="submit-review" class="btn btn-primary mt-2">Submit Review</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <p>Email: deepak@gmail.com</p>
+                        <p>Phone: +91 8754764540</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Follow Us</h5>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light footer-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Additional Information</h5>
+                        <p><a href="privacy.html" class="text-light">Privacy Policy</a></p>
+                        <p><a href="terms.html" class="text-light">Terms of Service</a></p>
+                    </div>
+                </div>
+                <p class="mt-4">&copy; 2025 D-Wear. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const product = JSON.parse(localStorage.getItem("selectedProduct"));
+            const reviewsKey = `reviews_${product.name}`;
+            let reviews = JSON.parse(localStorage.getItem(reviewsKey)) || [];
+
+            if (product) {
+                document.getElementById("productImage").src = product.image;
+                document.getElementById("productName").textContent = product.name;
+                document.getElementById("productPrice").textContent = "₹" + product.price;
+                document.getElementById("productDescription").textContent = product.description;
+            }
+
+            function displayReviews() {
+                const reviewsList = document.getElementById("reviews-list");
+                reviewsList.innerHTML = "";
+
+                reviews.forEach(review => {
+                    const reviewCard = document.createElement("div");
+                    reviewCard.classList.add("review-card");
+                    reviewCard.innerHTML = `
+                        <h5>${review.name}</h5>
+                        <p>${review.text}</p>
+                        <small class="text-muted">${review.date}</small>
+                    `;
+                    reviewsList.appendChild(reviewCard);
+                });
+            }
+
+            document.getElementById("submit-review").addEventListener("click", function () {
+                const name = document.getElementById("review-name").value.trim();
+                const text = document.getElementById("review-text").value.trim();
+
+                if (name === "" || text === "") {
+                    alert("Please enter both your name and review.");
+                    return;
+                }
+
+                const newReview = {
+                    name: name,
+                    text: text,
+                    date: new Date().toLocaleString(),
+                };
+
+                reviews.push(newReview);
+                localStorage.setItem(reviewsKey, JSON.stringify(reviews));
+                displayReviews();
+
+                document.getElementById("review-name").value = "";
+                document.getElementById("review-text").value = "";
+            });
+
+            displayReviews();
+
+            function addToCart() {
+                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+                const existingProduct = cartItems.find(item => item.name === product.name);
+
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cartItems.push({ ...product, quantity: 1 });
+                }
+
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                alert("Added to Cart!");
+            }
+
+            window.addToCart = addToCart;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(165, 246, 219);
+    font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li.active > a {
+    background-color: #5bc0de;
+}
+
+.container {
+    margin-top: 70px;
+}
+
+h2, h3, h5, h1 {
+    margin: 10px 0;
+}
+
+h2.text-center, h3.text-center, h5.text-center, h1.text-center {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #5bc0de;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #31b0d5;
+}
+
+textarea {
+    resize: vertical;
+}

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Logbook Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body style="background-color:rgb(165, 214, 246)">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">STUDENT RECORD</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#studentrecord">Index</a></li>
+        <li><a href="#biodata">Biodata</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Semester
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#SEM1">SEM 1</a></li>
+            <li><a href="#SEM2">SEM 2</a></li>
+            <li><a href="#SEM3">SEM 3</a></li>
+            <li><a href="#SEM4">SEM 4</a></li>
+            <li><a href="#SEM5">SEM 5</a></li>
+            <li><a href="#SEM6">SEM 6</a></li>
+            <li><a href="#SEM7">SEM 7</a></li>
+            <li><a href="#SEM8">SEM 8</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Co-curricular Activities
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#pp">Paper & Project</a></li>
+              <li><a href="#IV">Industrial Visit & Inplant Training</a></li>
+            </ul>
+          </li>
+          <li><a href="#EX">Extracurricular Activities</a></li>
+      </ul>
+    </div>
+  </nav> 
+    <div class="container" id="studentrecord">
+    <h2 class="text-center">KONGU ENGINEERING COLLEGE</h2>
+    <h5 class="text-center">(Autonomous)</h5>
+    <h3 class="text-center">THOPPUPALAYAM(Po),PERUNDURAI(Tk)</h3>
+    <h3 class="text-center">ERODE-638060 TAMILNADU INDIA</h3><br>
+    <h1 class="text-center">STUDENT RECORD</h1><br>
+    <center><img src="2.jpg" width="100" height="100"></center>
+    <table>
+    <tr>
+        <th>Name:</th>
+        <td><input type="text" id="name"></td>
+    </tr>
+    <tr>
+        <th>Reg.no:</th>
+        <td><input type="text" id="reg"></td>
+    </tr>
+    <tr>
+        <th>Programe:</th>
+        <td><input type="text" id="pro"></td>
+    </tr>
+    <tr>
+        <th>Branch:</th>
+        <td><input type="text" id="branch"></td>
+    </tr>
+    <tr>
+        <th>Period Of Study:</th>
+    </tr>
+    <tr>
+        <th>From:</th>
+        <td><input type="number" id="from"></td>
+        <th>To:</th>
+        <td><input type="number" id="to"></td>
+    </tr>
+    </table>
+    <button type="submit" value="click" onclick="val()">Submit</button>
+</div>
+<div class="container" id="biodata">
+    <h2 class="text-center">BIO DATA</h2><br>
+    <table>
+        <tr>
+            <th>1.Name:</th>
+            <td><input type="text" id="bname"></td>
+        </tr>
+        <tr>
+            <th>2.Date of Birth:</th>
+            <td><input type="text" id="dob"></td>
+        </tr>
+        <tr>
+            <th>3.e-mail ID:</th>
+            <td><input type="text" id="email"></td>
+        </tr>
+        <tr>
+            <th>4.Community and caste:</th>
+            <td><input type="text" id="cc"></td>
+        </tr> 
+        <tr>
+            <th>5.Name of the father/Guardian:</th>
+            <td><input type="text" id="father"></td>
+        </tr>       
+         <tr>
+            <th>6.Permanent Address:</th>
+            <td><textarea  id="address"></textarea></td>
+         </tr>
+        <tr>
+            <th>7.Occupation</th>
+            <td><input type="text" id="occupation"></td>
+        </tr>
+        <tr>
+            <th>8.Annual Income</th>
+            <td><input type="number" id="income"></td>
+        </tr>
+        <tr>
+            <th>9.Native place & District</th>
+            <td><input type="text" id="place"></td>
+        </tr>
+        <tr>
+            <th>10.Exam passed:</th>
+            <table class="table table-bordered">
+                <tr>
+                    <th>    </th>
+                    <th>Name and address of the Institution,Board/University</th>
+                    <th>Max Marks</th>
+                    <th> Marks Secured</th>
+                    <th>% of Marks</th>
+                    <th>Year of Passing</th>
+                </tr>
+                <tr>
+                    <th>S.S.L.C</th>
+                    <td><input type="text" id="sslc"></td>
+                    <td><input type="number" id="maxsslc"></td>
+                    <td><input type="number" id="sslcmark"></td>
+                    <td><input type="number" id="persslc"></td>
+                    <td><input type="number" id="yearsslc"></td>
+                </tr>
+                <tr>
+                    <th>H.Sc</th>
+                    <td><input type="text" id="hsc"></td>
+                    <td><input type="number" id="maxhsc"></td>
+                    <td><input type="number" id="hscmark"></td>
+                    <td><input type="number" id="perhsc"></td>
+                    <td><input type="number" id="yearhsc"></td>
+                </tr>
+                <tr>
+                    <th>UG</th>
+                    <td><input type="text" id="ug"></td>
+                    <td><input type="number" id="maxug"></td>
+                    <td><input type="number" id="ugmark"></td>
+                    <td><input type="number" id="perug"></td>
+                    <td><input type="number" id="yearug"></td>
+                </tr>
+                <tr>
+                    <th>PG</th>
+                    <td><input type="text" id="pg"></td>
+                    <td><input type="number" id="maxpg"></td>
+                    <td><input type="number" id="pgmark"></td>
+                    <td><input type="number" id="perpg"></td>
+                    <td><input type="number" id="yearpg"></td>
+                </tr>
+            </table>
+        </tr>
+        <tr>
+            <th>11. Mode of Admission:</th>
+            <td><input type="radio" name="admission_mode" id="counselling" value="counselling"> Counselling</td>
+            <td><input type="radio" name="admission_mode" id="Mgt" value="Mgt"> Mgt</td>
+            <td><input type="radio" name="admission_mode" id="nri" value="nri"> NRI</td>
+            <td><input type="radio" name="admission_mode" id="Others" value="Others"> Others</td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit" value="click" onclick="bio()">Submit</button>
+</div>
+<div class="container" id="SEM1">
+    <div class="row">
+        <div class="col-md-8">
+            <label>PROGRAMME: <input type="text" id="sem1pro"></label>
+        </div>
+        <div class="col-md-4">
+            <label>BRANCH: <input type="text" id="sem1branch"></label>
+            <br>
+            <label>SEMESTER: 1</label>
+        </div>
+    </div>
+    <label>Register No:  <input type="text" id="sem1reg"></label>
+    <table class="table table-bordered">
+        <tr>
+            <th rowspan="2">Sl. No.</th>
+            <th rowspan="2">Course Code & Course Name</th>
+            <th rowspan="2">Credit</th>
+            <th rowspan="2">CA Marks (50)</th>
+            <th colspan="4">End Semester Grade</th>
+        </tr>
+        <tr>
+            <th>Dec 20</th>
+            <th>May 20</th>
+            <th>Dec 20</th>
+            <th>May 20</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" id="sem11"></td>
+            <td><input  style=" width: 100px;" type="number" id="sem11credit"></td>
+            <td><input  style=" width: 100px;"  type="number" id="sem11ca"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input   type="text" id="sem12"></td>
+            <td><input  style=" width: 100px;" type="number" id="sem12credit"></td>
+            <td><input  style=" width: 100px;" type="number" id="sem12ca"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+            <td><input  style=" width: 80px;" type="text"></td>
+        </tr>
+    </table>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Attendence:<input type="text" id="sem1att">%</label>
+        </div>
+        <div class="col-md-4">
+            <label>GPA: <input type="text" id="sem1gpa">%</label>
+        </div>
+        <div class="col-md-4">
+            <label>CGPA: <input type="text" id="sem1cgpa">%</label>
+        </div>
+    </div>
+</div>
+<div class="container" id="pp">
+    <h2 class="text-center">Co-curricular Acitivities</h2>
+   <h3>(A).PAPER PRESENTATION,PROJECT PRESENTATION & QUIZ etc.,</h3> 
+    <table class="table table-bordered">
+        <tr>
+            <th>SI.No</th>
+            <th>Title of the paper presented</th>
+            <th>Name of the institution </th>
+            <th>Prize/Award</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" id="t1"></td>
+            <td><input type="text" id="n1"></td>
+            <td><input type="text" id="p1"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="text" id="t2"></td>
+            <td><input type="text" id="n2"></td>
+            <td><input type="text" id="p2"></td>
+        </tr>
+    </table>
+</div>
+<div class="container" id="IV">
+    <h2 class="text-center">Co-curricular Acitivities</h2>
+   <h3>(B).INDUSTRIAL VISTS</h3> 
+    <table class="table table-bordered">
+        <tr>
+            <th>SI.No</th>
+            <th>Industry Visited</th>
+            <th>Period and Duration </th>
+            <th>Remarks</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" id="ivt1"></td>
+            <td><input type="date" id="ivn1"></td>
+            <td><input type="text" id="ivp1"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><input type="text" id="ivt2"></td>
+            <td><input type="date" id="ivn2"></td>
+            <td><input type="text" id="ivp2"></td>
+        </tr>
+    </table>
+</div>
+<div class="container" id="EX">
+<h2 class="text-center">Extra Curricular Activities</h2>
+<h3>SPORTS</h3>
+<textarea id="sp" style="width: 1000px;height: 100px;" ></textarea>
+<h3>NCC/NSS/NSO,etc.:</h3>
+<textarea id="eep" style="width: 1000px;height: 100px;"></textarea>
+<h3>MINI PROJECTS/OPEN HOUSE EXHIBITION MODELS</h3>
+<textarea id="MP" style="width: 1000px;height: 100px;"></textarea>
+</div>
+</body>
+</html>
