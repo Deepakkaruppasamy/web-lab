@@ -1,0 +1,109 @@
+<div class="booking-modal">
+  <h2 class="modal-title">Book Appointment with {{ data.doctor.name }}</h2>
+  <p class="doctor-specialty">{{ data.doctor.specialty }} ({{ data.doctor.experience }} yrs)</p>
+  
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Patient Name</mat-label>
+        <input matInput formControlName="patientName" placeholder="Enter your full name">
+        <mat-error *ngIf="bookingForm.get('patientName')?.hasError('required')">
+          Patient name is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="contactEmail" placeholder="Enter your email">
+        <mat-error *ngIf="bookingForm.get('contactEmail')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('contactEmail')?.hasError('email')">
+          Please enter a valid email
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="contactPhone" placeholder="Enter your phone number">
+        <mat-error *ngIf="bookingForm.get('contactPhone')?.hasError('required')">
+          Phone number is required
+        </mat-error>
+        <mat-error *ngIf="bookingForm.get('contactPhone')?.hasError('pattern')">
+          Please enter a valid phone number
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="patientGender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="other">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="bookingForm.get('patientGender')?.hasError('required')">
+          Gender is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Appointment Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="appointmentDate" [min]="today" [max]="maxDate">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="bookingForm.get('appointmentDate')?.hasError('required')">
+          Appointment date is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Appointment Time</mat-label>
+        <mat-select formControlName="appointmentTime">
+          <mat-option *ngFor="let slot of availableTimeSlots" [value]="slot">
+            {{ slot }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="bookingForm.get('appointmentTime')?.hasError('required')">
+          Appointment time is required
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Appointment Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of appointmentTypes" [value]="type.value">
+            {{ type.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="bookingForm.get('type')?.hasError('required')">
+          Appointment type is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Reason for Visit</mat-label>
+      <textarea matInput formControlName="reasonForVisit" rows="2" placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+      <mat-error *ngIf="bookingForm.get('reasonForVisit')?.hasError('required')">
+        Reason for visit is required
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Additional Notes (Optional)</mat-label>
+      <textarea matInput formControlName="additionalNotes" rows="2" placeholder="Any additional information you want to provide"></textarea>
+    </mat-form-field>
+    
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+    
+    <div class="button-row">
+      <button type="button" mat-button (click)="onCancel()">Cancel</button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="loading">
+        <span *ngIf="!loading">Book Appointment</span>
+        <span *ngIf="loading">Booking...</span>
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,161 @@
+.appointment-booking {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  .booking-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+
+  .booking-form {
+    .form-section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+
+      h3 {
+        color: #34495e;
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 0.5rem;
+      }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #495057;
+        font-weight: 500;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease-in-out;
+
+        &:focus {
+          outline: none;
+          border-color: #4a90e2;
+          box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+        }
+
+        &.error {
+          border-color: #dc3545;
+          &:focus {
+            box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.2);
+          }
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+    }
+  }
+
+  .fee-info {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: #e3f2fd;
+    border-radius: 6px;
+    border-left: 4px solid #2196f3;
+
+    .consultation-fee {
+      color: #1976d2;
+      font-size: 1.1rem;
+      margin: 0;
+
+      span {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 2rem;
+
+    .submit-btn {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: #43a047;
+      }
+
+      &:disabled {
+        background-color: #9e9e9e;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .appointment-booking {
+    padding: 1rem;
+
+    .booking-container {
+      padding: 1rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Loading animation
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+  margin-right: 0.5rem;
+} 

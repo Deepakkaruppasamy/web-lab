@@ -1,0 +1,86 @@
+<div class="appointments-container">
+  <div class="appointments-header">
+    <h2>My Appointments</h2>
+    <button routerLink="/appointments/book" class="btn-primary">
+      Book New Appointment
+    </button>
+  </div>
+
+  <div class="loading-spinner" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <div class="no-appointments" *ngIf="!loading && appointments.length === 0">
+    <p>You have no appointments scheduled.</p>
+    <button routerLink="/appointments/book" class="btn-primary">
+      Book Your First Appointment
+    </button>
+  </div>
+
+  <div class="appointments-list" *ngIf="!loading && appointments.length > 0">
+    <div class="appointment-card" *ngFor="let appointment of appointments">
+      <div class="appointment-header" [ngClass]="appointment.statusClass">
+        <span class="status-badge">{{appointment.status | titlecase}}</span>
+        <span class="appointment-date">{{appointment.formattedDate}}</span>
+      </div>
+
+      <div class="appointment-body">
+        <div class="appointment-info">
+          <h3>{{appointment.type === 'in-person' ? 'In-Person Visit' : 'Teleconsultation'}}</h3>
+          <p class="doctor-info">
+            <strong>Doctor:</strong> Dr. {{appointment.doctorId?.name}}
+            <span class="specialty">({{appointment.specialty}})</span>
+          </p>
+          <p class="time-slot">
+            <strong>Time:</strong> {{appointment.timeSlot}}
+          </p>
+          <p class="reason">
+            <strong>Reason:</strong> {{appointment.reasonForVisit}}
+          </p>
+          <p *ngIf="appointment.symptoms" class="symptoms">
+            <strong>Symptoms:</strong> {{appointment.symptoms}}
+          </p>
+        </div>
+
+        <div class="appointment-actions">
+          <ng-container [ngSwitch]="appointment.status">
+            <div *ngSwitchCase="'scheduled'">
+              <button 
+                class="btn-warning"
+                (click)="cancelAppointment(appointment._id!)"
+              >
+                Cancel
+              </button>
+            </div>
+            <div *ngSwitchCase="'completed'" class="feedback-section">
+              <button 
+                *ngIf="!appointment.feedback"
+                class="btn-primary"
+                [routerLink]="['/appointments', appointment._id, 'feedback']"
+              >
+                Add Feedback
+              </button>
+              <div *ngIf="appointment.feedback" class="feedback-display">
+                <div class="rating">
+                  Rating: {{appointment.feedback.rating}}/5
+                </div>
+                <div class="review">
+                  "{{appointment.feedback.review}}"
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="appointment-footer" *ngIf="appointment.payment">
+        <div class="payment-info">
+          <span class="amount">Amount: {{appointment.payment.amount | currency}}</span>
+          <span class="payment-status" [ngClass]="'payment-' + appointment.payment.status">
+            {{appointment.payment.status | titlecase}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

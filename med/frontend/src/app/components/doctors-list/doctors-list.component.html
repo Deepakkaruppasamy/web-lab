@@ -1,0 +1,50 @@
+<div class="doctors-container">
+  <h1 class="page-title">Our Doctors</h1>
+  
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div class="doctors-grid">
+    <mat-card class="doctor-card" *ngFor="let doctor of doctors">
+      <mat-card-header class="doctor-header">
+        <div class="doctor-avatar">
+          <img [src]="doctor.profileImage || 'assets/images/default-doctor.png'" alt="{{ doctor.name }}">
+        </div>
+        <mat-card-title class="doctor-name">{{ doctor.name }}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content class="doctor-details">
+        <div class="detail-row">
+          <span class="label">Specialization:</span>
+          <span class="value">{{ doctor.specialty }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label">Experience:</span>
+          <span class="value">{{ doctor.experience }}yrs</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label">Fees per consultation:</span>
+          <span class="value">$ {{ doctor.consultationFees?.inPerson || 0 }}</span>
+        </div>
+        
+        <div class="detail-row">
+          <span class="label">Phone:</span>
+          <span class="value">{{ doctor.phone || '-' }}</span>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions class="doctor-actions">
+        <button mat-raised-button color="primary" (click)="bookAppointment(doctor)" class="book-btn">
+          BOOK APPOINTMENT
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

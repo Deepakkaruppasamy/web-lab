@@ -1,0 +1,199 @@
+<div class="appointment-booking">
+  <div class="booking-container">
+    <h2>Book an Appointment</h2>
+    
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+      <!-- Patient Details Section -->
+      <div class="form-section">
+        <h3>Patient Details</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="patientName">Full Name</label>
+            <input 
+              id="patientName" 
+              type="text" 
+              formControlName="patientName" 
+              placeholder="Enter full name"
+              [class.error]="bookingForm.get('patientName')?.invalid && bookingForm.get('patientName')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="patientAge">Age</label>
+            <input 
+              id="patientAge" 
+              type="number" 
+              formControlName="patientAge" 
+              placeholder="Enter age"
+              [class.error]="bookingForm.get('patientAge')?.invalid && bookingForm.get('patientAge')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="patientGender">Gender</label>
+            <select 
+              id="patientGender" 
+              formControlName="patientGender"
+              [class.error]="bookingForm.get('patientGender')?.invalid && bookingForm.get('patientGender')?.touched"
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactPhone">Phone Number</label>
+            <input 
+              id="contactPhone" 
+              type="tel" 
+              formControlName="contactPhone" 
+              placeholder="Enter phone number"
+              [class.error]="bookingForm.get('contactPhone')?.invalid && bookingForm.get('contactPhone')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Email</label>
+            <input 
+              id="contactEmail" 
+              type="email" 
+              formControlName="contactEmail" 
+              placeholder="Enter email"
+              [class.error]="bookingForm.get('contactEmail')?.invalid && bookingForm.get('contactEmail')?.touched"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="medicalHistory">Medical History (Optional)</label>
+          <textarea 
+            id="medicalHistory" 
+            formControlName="medicalHistory" 
+            placeholder="Enter any relevant medical history"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Appointment Details Section -->
+      <div class="form-section">
+        <h3>Appointment Details</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="specialty">Specialty</label>
+            <select 
+              id="specialty" 
+              formControlName="specialty"
+              [class.error]="bookingForm.get('specialty')?.invalid && bookingForm.get('specialty')?.touched"
+            >
+              <option value="">Select specialty</option>
+              <option *ngFor="let specialty of specialties" [value]="specialty">
+                {{specialty}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="doctorId">Doctor</label>
+            <select 
+              id="doctorId" 
+              formControlName="doctorId"
+              [class.error]="bookingForm.get('doctorId')?.invalid && bookingForm.get('doctorId')?.touched"
+            >
+              <option value="">Select doctor</option>
+              <option *ngFor="let doctor of doctors" [value]="doctor._id">
+                Dr. {{doctor.name}} (Rating: {{doctor.rating.average | number:'1.1-1'}})
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input 
+              id="date" 
+              type="date" 
+              formControlName="date"
+              [min]="today"
+              [class.error]="bookingForm.get('date')?.invalid && bookingForm.get('date')?.touched"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="timeSlot">Time Slot</label>
+            <select 
+              id="timeSlot" 
+              formControlName="timeSlot"
+              [class.error]="bookingForm.get('timeSlot')?.invalid && bookingForm.get('timeSlot')?.touched"
+            >
+              <option value="">Select time slot</option>
+              <option *ngFor="let slot of availableSlots" [value]="slot.startTime">
+                {{slot.startTime}}
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="type">Appointment Type</label>
+            <select 
+              id="type" 
+              formControlName="type"
+              [class.error]="bookingForm.get('type')?.invalid && bookingForm.get('type')?.touched"
+            >
+              <option value="in-person">In-Person</option>
+              <option value="teleconsultation">Teleconsultation</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reasonForVisit">Reason for Visit</label>
+          <textarea 
+            id="reasonForVisit" 
+            formControlName="reasonForVisit" 
+            placeholder="Describe your reason for visit"
+            rows="3"
+            [class.error]="bookingForm.get('reasonForVisit')?.invalid && bookingForm.get('reasonForVisit')?.touched"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="symptoms">Symptoms (Optional)</label>
+          <textarea 
+            id="symptoms" 
+            formControlName="symptoms" 
+            placeholder="Describe your symptoms"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Fee Information -->
+      <div class="fee-info" *ngIf="selectedDoctor">
+        <p class="consultation-fee">
+          Consultation Fee: 
+          <span>{{bookingForm.get('type')?.value === 'in-person' ? 
+            selectedDoctor.consultationFees.inPerson : 
+            selectedDoctor.consultationFees.teleconsultation | currency}}</span>
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button 
+          type="submit" 
+          [disabled]="bookingForm.invalid || loading"
+          class="submit-btn"
+        >
+          <span *ngIf="!loading">Book Appointment</span>
+          <span *ngIf="loading">Booking...</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div> 

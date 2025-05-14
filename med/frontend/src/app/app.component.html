@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span>MedConsult</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="isAuthenticated">
+    <button mat-button routerLink="/home">Home</button>
+    <button mat-button routerLink="/doctors">Our Doctors</button>
+    <button mat-button routerLink="/appointments">Appointments</button>
+    <button mat-button routerLink="/demo-request">Request Demo</button>
+    <button mat-button (click)="logout()">Logout</button>
+  </ng-container>
+  <ng-container *ngIf="!isAuthenticated">
+    <button mat-button routerLink="/login">Login</button>
+    <button mat-button routerLink="/register">Register</button>
+  </ng-container>
+</mat-toolbar>
+<router-outlet></router-outlet>
